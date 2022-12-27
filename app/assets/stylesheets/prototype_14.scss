@@ -1,0 +1,212 @@
+@font-face {
+  font-family: 'Power';
+  src: font-url('power') format('truetype');
+}
+@font-face {
+  font-family: 'Yapari';
+  src: font-url('yapari') format('truetype');
+}
+
+.prototypes_index * {
+  color: var(--black);
+}
+.prototype_body_1 {
+  background-color: #000;
+}
+
+#prototype_14 {
+  user-select: none;
+  height: 100%;
+  margin: 0 auto;
+  width: 1000px;
+  .Container {
+    .controls {
+      justify-content: center;
+      gap: 5px;
+      display: flex;
+      margin-top: 10px;
+      .SC_Button {
+        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+        background-color: #1c1b1b;
+        color: #4a4a4a;
+        width: 100%;
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+        transition: 1s;
+        &:hover {
+          transition: 0.3s;
+          color: #fff;
+        }
+      }
+      .SC_Button:last-of-type {
+        font-size: 30px;
+      }
+    }
+    .melodies {
+      color: #3e140a;
+      display: flex;
+      justify-content: space-around;
+      flex-direction: row-reverse;
+      background: #ef562f;
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 3px;
+      .MainTune {
+        width: calc(100%-10px);
+        padding: 10px;
+        h2 {
+          margin: 20px;
+          font-family: Power;
+          font-weight: bold;
+          letter-spacing: 2px;
+          text-align: center;
+          font-size: 64px;
+        }
+        .SC_ToggleButtonSet {
+          margin-top: 30px;
+          margin-bottom: 30px;
+          h3 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: normal;
+          }
+          div {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+          }
+          .SC_ToggleButton {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ff5c33;
+            width: 100px;
+            height: 50px;
+            box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 3px;
+            line-height: 50px;
+            transition: 1s;
+            &:hover:not(.active) {
+              transition: 0.3s;
+              background-color: #fd6843;
+              box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.25),
+                inset 0px 0px 10px rgba(255, 195, 195, 0.5);
+            }
+            &.active {
+              box-shadow: inset 3px 4px 4px rgba(0, 0, 0, 0.25);
+            }
+          }
+        }
+        .SC_Slider {
+          margin-bottom: 40px;
+          h3 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: normal;
+          }
+          input[type='range'] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 100%;
+            border-radius: 15px;
+          }
+          input[type='range']::-webkit-slider-runnable-track {
+            height: 10px;
+            background: var(--white);
+            border: none;
+            background: #e4532f;
+            box-shadow: inset 2px 1px 3px rgba(0, 0, 0, 0.25);
+            border-radius: 15px;
+          }
+          input[type='range']::-webkit-slider-thumb {
+            appearance: none;
+            -webkit-appearance: none;
+            border: none;
+            height: 20px;
+            width: 20px;
+            margin-top: -6px;
+            background: #ff5c33;
+            box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.25),
+              inset 3px 4px 4px rgba(255, 195, 195, 0.1);
+            border-radius: 100px;
+            cursor: pointer;
+            transition: 1s;
+            &:hover {
+              transition: 0.3s;
+              box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.25),
+                inset 0px 0px 13px rgba(255, 195, 195, 0.5);
+            }
+          }
+          input[type='range']:focus {
+            outline: none;
+          }
+          input[type='range']:focus::-webkit-slider-thumb {
+            height: 24px;
+            width: 24px;
+            margin-top: -7px;
+          }
+          input[type='range']:focus::-webkit-slider-runnable-track {
+            background: #e4532f;
+            box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.25),
+              inset 3px 4px 4px rgba(255, 195, 195, 0.1);
+          }
+        }
+      }
+    }
+    .Drums {
+      color: #5f460c;
+      margin-top: 18px;
+      height: 140px;
+      width: 100%;
+      background: #f0ab18;
+      border-radius: 2px;
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25),
+        inset 1px 3px 4px rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 22px;
+      .SC_Button {
+        height: 100px;
+        width: 200px;
+        background: #ffbe33;
+        box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.25),
+          inset 3px 4px 4px rgba(255, 255, 255, 0.15);
+        border-radius: 1px;
+        font-family: Yapari;
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 112px;
+        text-align: center;
+        transition: 1s;
+        &:hover {
+          transition: 0.3s;
+          box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.25),
+            inset 0px 0px 50px rgba(255, 255, 255, 0.5);
+        }
+      }
+      .DrumSamples {
+        display: flex;
+        gap: 20px;
+        .SC_ToggleButton {
+          font-family: Yapari;
+          font-size: 30px;
+          width: 100px;
+          height: 100px;
+          background: #ffbe33;
+          box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.25),
+            inset 3px 4px 4px rgba(255, 255, 255, 0.15);
+          border-radius: 1px;
+          text-align: center;
+          line-height: 110px;
+          transition: 1s;
+          &:hover {
+            transition: 0.3s;
+            box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.25),
+              inset 0px 0px 50px rgba(255, 255, 255, 0.5);
+          }
+          &:not(.active) {
+            transition: 0.3s;
+            box-shadow: inset 3px 4px 4px rgba(0, 0, 0, 0.25);
+          }
+        }
+      }
+    }
+  }
+}
