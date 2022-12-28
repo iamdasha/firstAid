@@ -165,43 +165,88 @@ const sequence = {
   steps1: [
     {
       time: '0:0:0',
-      noteName: 'C4',
+      noteName: 'F4',
       duration: '4n',
-      velocity: 1
-    },
-    {
-      time: '0:0:2',
-      noteName: 'A4',
-      duration: '1n',
       velocity: 1
     },
     {
       time: '0:1:0',
-      noteName: 'E4',
-      duration: '4n',
+      noteName: 'F4',
+      duration: '1n',
       velocity: 1
     },
     {
       time: '0:2:0',
-      noteName: 'G4',
+      noteName: 'D4',
       duration: '4n',
       velocity: 1
     },
     {
       time: '0:3:0',
-      noteName: 'C4',
+      noteName: 'D4',
       duration: '4n',
       velocity: 1
     },
     {
-      time: '0:3:1',
-      noteName: 'E4',
+      time: '1:0:0',
+      noteName: 'D4',
+      duration: '8n',
+      velocity: 1
+    },
+    {
+      time: '1:0:8',
+      noteName: 'D4',
       duration: '4n',
       velocity: 1
     },
     {
-      time: '0:3:2',
-      noteName: 'G4',
+      time: '1:1:1',
+      noteName: 'D4',
+      duration: '4n',
+      velocity: 1
+    },
+    {
+      time: '1:2:1',
+      noteName: 'D4',
+      duration: '1n',
+      velocity: 1
+    },
+    {
+      time: '2:3:1',
+      noteName: 'D4',
+      duration: '4n',
+      velocity: 1
+    },
+    {
+      time: '3:0:1',
+      noteName: 'D4',
+      duration: '4n',
+      velocity: 1
+    }
+
+  ],
+  steps2: [
+    {
+      time: '0:0:0',
+      noteName: 'D4',
+      duration: '4n',
+      velocity: 1
+    },
+    {
+      time: '0:1:0',
+      noteName: 'F4',
+      duration: '4n',
+      velocity: 1
+    },
+    {
+      time: '0:2:0',
+      noteName: 'A4',
+      duration: '4n',
+      velocity: 1
+    },
+    {
+      time: '0:3:0',
+      noteName: 'B5',
       duration: '4n',
       velocity: 1
     },
@@ -213,128 +258,72 @@ const sequence = {
     },
     {
       time: '1:1:0',
-      noteName: 'G4',
+      noteName: 'F4',
       duration: '4n',
       velocity: 1
     },
     {
-      time: '1:1:2',
-      noteName: 'E4',
-      duration: '4n',
-      velocity: 0.7
-    },
-    {
-      time: '1:1:3',
-      noteName: 'D5',
-      duration: '4n',
-      velocity: 0.8
-    },
-    {
       time: '1:2:0',
+      noteName: 'A4',
+      duration: '4n',
+      velocity: 1
+    },
+    {
+      time: '1:3:0',
+      noteName: 'B5',
+      duration: '4n',
+      velocity: 1
+    },
+    {
+      time: '2:0:0',
       noteName: 'C4',
       duration: '4n',
       velocity: 1
     },
     {
-      time: '1:3:0',
+      time: '2:1:0',
+      noteName: 'E4',
+      duration: '4n',
+      velocity: 1
+    },
+    {
+      time: '2:2:0',
       noteName: 'G4',
       duration: '4n',
       velocity: 1
     },
     {
-      time: '1:3:2',
-      noteName: 'C5',
-      duration: '4n',
-      velocity: 1
-    }
-  ],
-  steps2: [
-    {
-      time: '0:0:0',
-      noteName: 'C5',
-      duration: '4n',
-      velocity: 1
-    },
-    {
-      time: '0:0:2',
-      noteName: 'A5',
-      duration: '1n',
-      velocity: 1
-    },
-    {
-      time: '0:1:0',
-      noteName: 'E5',
-      duration: '4n',
-      velocity: 1
-    },
-    {
-      time: '0:2:0',
-      noteName: 'G5',
-      duration: '4n',
-      velocity: 1
-    },
-    {
-      time: '0:3:0',
-      noteName: 'C5',
-      duration: '4n',
-      velocity: 1
-    },
-    {
-      time: '0:3:1',
-      noteName: 'E5',
-      duration: '4n',
-      velocity: 1
-    },
-    {
-      time: '0:3:2',
-      noteName: 'G5',
-      duration: '4n',
-      velocity: 1
-    },
-    {
-      time: '1:0:0',
+      time: '2:3:0',
       noteName: 'D5',
       duration: '4n',
       velocity: 1
     },
     {
-      time: '1:1:0',
-      noteName: 'G5',
+      time: '3:0:0',
+      noteName: 'C4',
       duration: '4n',
       velocity: 1
     },
     {
-      time: '1:1:2',
-      noteName: 'E5',
-      duration: '4n',
-      velocity: 0.7
-    },
-    {
-      time: '1:1:3',
-      noteName: 'D6',
-      duration: '4n',
-      velocity: 0.8
-    },
-    {
-      time: '1:2:0',
-      noteName: 'C5',
+      time: '3:1:0',
+      noteName: 'E4',
       duration: '4n',
       velocity: 1
     },
     {
-      time: '1:3:0',
-      noteName: 'G5',
+      time: '3:2:0',
+      noteName: 'G4',
       duration: '4n',
       velocity: 1
     },
     {
-      time: '1:3:2',
-      noteName: 'C6',
+      time: '3:3:0',
+      noteName: 'D5',
       duration: '4n',
       velocity: 1
     }
   ],
-  duration: '2m',
+  duration: '4m',
   loop: true,
   current: 'steps1'
 }

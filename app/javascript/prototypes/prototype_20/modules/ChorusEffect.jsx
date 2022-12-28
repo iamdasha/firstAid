@@ -16,7 +16,7 @@ export default class ChorusEffect extends Component {
   render() {
     const { title, instrumentName, settings } = this.props
     const { wet, type, frequency, delayTime, depth, spread } = settings.chorus
-    const oscillatorTypes = ['sine', 'square', 'triangle', 'sawtooth']
+    const oscillatorTypes = ['sine', 'square', 'sawtooth', 'triangle']
 
     return (
       <div className="ChorusEffect">

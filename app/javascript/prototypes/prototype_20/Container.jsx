@@ -22,6 +22,8 @@ import Select from "./components/Select";
 
 let bassSynth;
 let bassChorus;
+let bassDistortion;
+let bassBitCrusher;
 let bassPingPongDelay;
 let bassPart;
 
@@ -161,11 +163,19 @@ export default class Container extends Component {
     bassSynth = new Tone.Synth(bassSettings.synth);
     bassChorus = new Tone.Chorus(bassSettings.chorus).start();
 
+    bassDistortion = new Tone.Distortion(bassSettings.distortion);
+    bassBitCrusher = new Tone.BitCrusher(bassSettings.bitCrusher);
+
     bassPingPongDelay = new Tone.PingPongDelay(
       bassSettings.pingPongDelay
     ).toDestination();
 
-    bassSynth.chain(bassChorus, bassPingPongDelay);
+    bassSynth.chain(
+      bassChorus,
+      bassPingPongDelay,
+      bassDistortion,
+      bassBitCrusher
+    );
 
     bassPart = new Tone.Part((time, note) => {
       bassSynth.triggerAttackRelease(
@@ -214,10 +224,18 @@ export default class Container extends Component {
     //
     sampler = new Tone.Sampler({
       urls: {
-        A1: "00001-Linn-9000-BassDrumrum1.mp3",
-        A2: "00017-Linn-9000-Snare.mp3",
-        A3: "00002-Linn-9000-Clhh-1.mp3",
-        A4: "00064-Vermona-DRM1-MK3-Tom13.mp3",
+        A1: "Swimming_In_Space.wav",
+        A2: "Perc09.wav",
+        A3: "Perc05.wav",
+        A4: "Perc06.wav",
+        C1: "Kick07.wav",
+        C2: "Rhythmic01(120BPM).wav",
+        C3: "Life_Forms.wav",
+        C4: "Snare.wav",
+        E1: "MiniKit_03(Dub_FX).wav",
+        E2: "K01AltWoread160G-03.wav",
+        E3: "K01AltPhad160G-01.wav",
+        E4: "K01AltWib160G-04.wav",
       },
       baseUrl: "http://localhost:3000/samples/",
       // onload: () => {
@@ -335,7 +353,9 @@ export default class Container extends Component {
     if (instrumentName === "bass") {
       instrument = bassSynth;
       chorus = bassChorus;
+      distortion = bassDistortion;
       pingPongDelay = bassPingPongDelay;
+      bitCrusher = bassBitCrusher;
       settings = bassSettings;
     } else if (instrumentName === "melody") {
       instrument = melodySynth;
@@ -608,20 +628,15 @@ export default class Container extends Component {
   };
 
   renderStartButton = () => {
-    return (
-      <SC_Button
-        text="Art Design & Coding Community"
-        handleClick={this.handleStart}
-      />
-    );
+    //return <SC_Button text="PLAY" handleClick={this.handleStart} />;
   };
 
   renderShowHideButton = () => {
-    return (
-      <div className="toggleUIButton" onClick={this.handleToggleUIShow}>
-        Show/Hide UI
-      </div>
-    );
+    // return (
+    //   <div className="toggleUIButton" onClick={this.handleToggleUIShow}>
+    //     Show/Hide UI
+    //   </div>
+    // );
   };
 
   renderUI = () => {
@@ -640,152 +655,273 @@ export default class Container extends Component {
 
     return (
       <div className="instrumentUI">
-        <SC_Slider
-          name="BPM"
-          min={0}
-          max={300}
-          step={1}
-          value={bpm}
-          property="bpm"
-          handleChange={(property, value) => {
-            this.handleTransportChange(property, value);
-          }}
-        />
-
-        <br />
-
-        <div className="sampleButtonWrapper">
-          <SC_Button
-            text="Sample"
-            handleClick={() => {
-              sampler.triggerAttackRelease("A4", "1n");
-            }}
-          />
+        <div className="Header">
+          <SC_Button text="play" handleClick={this.handleStart} />
+          <div className="Pic"></div>
+          <div className="BpmWpapper">
+            {/* <div className="Rect"></div> */}
+            <div className="BPM">
+              <SC_Slider
+                name="BPM"
+                min={0}
+                max={300}
+                step={1}
+                value={bpm}
+                property="bpm"
+                handleChange={(property, value) => {
+                  this.handleTransportChange(property, value);
+                }}
+              />
+            </div>
+          </div>
         </div>
 
         <div className="Synth">
-        <div className="Left">
-        <ToneSynth
-          title="Vitamin Synth"
-          instrumentName="melody"
-          settings={melodySettings}
-          handleValueChange={this.handleValueChange}
-        />
+          <div className="Left">
+            <ToneSynth
+              title="Vitamin Synth"
+              instrumentName="melody"
+              settings={melodySettings}
+              handleValueChange={this.handleValueChange}
+            />
 
-        <Channel
-          settings={melodySettings}
-          handleValueChange={this.handleMelodyValueChange}
-        />
+            <Channel
+              settings={melodySettings}
+              handleValueChange={this.handleMelodyValueChange}
+            />
 
-        <br />
+            <div className="SequenceSettings">
+              <div className="Sequence">
+                <SC_ToggleButtonSet
+                  name="Sequence"
+                  options={["steps1", "steps2"]}
+                  value={melodySettings.sequence.current}
+                  property="melodySequence"
+                  handleChange={this.handleMelodySequenceChange}
+                />
+              </div>
 
-        <SC_ToggleButtonSet
-          name="Sequence"
-          options={["steps1", "steps2"]}
-          value={melodySettings.sequence.current}
-          property="melodySequence"
-          handleChange={this.handleMelodySequenceChange}
-        />
+              <div className="Sound">
+                <SC_ToggleButtonSet
+                  name="Sound"
+                  options={["default", "preset1", "preset2"]}
+                  value={melodySettings.presets.current}
+                  property="melodySoundPreset"
+                  handleChange={this.handleMelodySoundPresetChange}
+                />
+              </div>
+            </div>
 
-        <br />
+            <Select
+              name="Change melody on measure"
+              options={[2, 4, 8, 16, 32]}
+              isOpened={melodyChangeMeasureSelect}
+              value={melodyChangeMeasure}
+              property=""
+              handleMelodyChangeMeasureSelectOpen={
+                this.handleMelodyChangeMeasureSelectOpen
+              }
+              handleMelodyChangeMeasureSelectClose={
+                this.handleMelodyChangeMeasureSelectClose
+              }
+              handleChange={this.handleMelodyChangeMeasure}
+            />
+            <div className="DuoButtons">
+              <SC_ToggleButton
+                text={melodyChangeButtonText}
+                isOn={melodyChange}
+                handleClick={this.handleMelodyChange}
+              />
 
-        <SC_ToggleButtonSet
-          name="Sound"
-          options={["default", "preset1", "preset2"]}
-          value={melodySettings.presets.current}
-          property="melodySoundPreset"
-          handleChange={this.handleMelodySoundPresetChange}
-        />
+              <SC_ToggleButton
+                text="Random"
+                isOn={melodyChangeRandom}
+                handleClick={this.handleMelodyChangeRandom}
+              />
+            </div>
 
-        <br />
+            <div className="Effect">
+              <ChorusEffect
+                title="Chorus"
+                instrumentName="melody"
+                settings={melodySettings}
+                handleValueChange={this.handleValueChange}
+              />
+            </div>
 
-        <Select
-          name="Change melody on measure"
-          options={[2, 4, 8, 16, 32]}
-          isOpened={melodyChangeMeasureSelect}
-          value={melodyChangeMeasure}
-          property=""
-          handleMelodyChangeMeasureSelectOpen={
-            this.handleMelodyChangeMeasureSelectOpen
-          }
-          handleMelodyChangeMeasureSelectClose={
-            this.handleMelodyChangeMeasureSelectClose
-          }
-          handleChange={this.handleMelodyChangeMeasure}
-        />
+            <div className="DuoEffect">
+              <div className="Effect">
+                <BitCrusherEffect
+                  title="BitCrusher"
+                  instrumentName="melody"
+                  settings={melodySettings}
+                  handleValueChange={this.handleValueChange}
+                />
+              </div>
 
-        <SC_ToggleButton
-          text={melodyChangeButtonText}
-          isOn={melodyChange}
-          handleClick={this.handleMelodyChange}
-        />
+              <div className="Effect">
+                <PingPongDelayEffect
+                  title="Ping Pong Delay"
+                  instrumentName="melody"
+                  settings={melodySettings}
+                  handleValueChange={this.handleValueChange}
+                />
+              </div>
+            </div>
 
-        <br />
+            <div className="Effect">
+              <DistortionEffect
+                title="Distortion"
+                instrumentName="melody"
+                settings={melodySettings}
+                handleValueChange={this.handleValueChange}
+              />
+            </div>
+          </div>
 
-        <SC_ToggleButton
-          text="Random"
-          isOn={melodyChangeRandom}
-          handleClick={this.handleMelodyChangeRandom}
-        />
+          <div className="Right">
+            <ToneSynth
+              title="Mineral Synth"
+              instrumentName="bass"
+              settings={bassSettings}
+              handleValueChange={this.handleValueChange}
+            />
 
-        <br />
+            <div className="Effect">
+              <ChorusEffect
+                title="Chorus"
+                instrumentName="bass"
+                settings={bassSettings}
+                handleValueChange={this.handleValueChange}
+              />
+            </div>
 
-        <ChorusEffect
-          title="Chorus"
-          instrumentName="melody"
-          settings={melodySettings}
-          handleValueChange={this.handleValueChange}
-        />
+            <div className="DuoEffect">
+              <div className="Effect">
+                <BitCrusherEffect
+                  title="BitCrusher"
+                  instrumentName="bass"
+                  settings={bassSettings}
+                  handleValueChange={this.handleValueChange}
+                />
+              </div>
 
-        <DistortionEffect
-          title="Distortion"
-          instrumentName="melody"
-          settings={melodySettings}
-          handleValueChange={this.handleValueChange}
-        />
+              <div className="Effect">
+                <PingPongDelayEffect
+                  title="Ping Pong Delay"
+                  instrumentName="bass"
+                  settings={bassSettings}
+                  handleValueChange={this.handleValueChange}
+                />
+              </div>
+            </div>
 
-        <BitCrusherEffect
-          title="BitCrusher"
-          instrumentName="melody"
-          settings={melodySettings}
-          handleValueChange={this.handleValueChange}
-        />
+            <div className="Effect">
+              <DistortionEffect
+                title="Distortion"
+                instrumentName="bass"
+                settings={bassSettings}
+                handleValueChange={this.handleValueChange}
+              />
+            </div>
 
-        <PingPongDelayEffect
-          title="Ping Pong Delay"
-          instrumentName="melody"
-          settings={melodySettings}
-          handleValueChange={this.handleValueChange}
-        />
+            <div className="Boom">
+              {/* <div className="Beat">
+              <h1>Beat</h1>
+              <Channel
+                settings={drumsSettings}
+                handleValueChange={this.handleDrumsValueChange}
+              />
+            </div> */}
+              <div className="Samples">
+                <div className="sampleButtonWrapper">
+                  <div className="Square">
+                    <SC_Button
+                      text="SPACE"
+                      handleClick={() => {
+                        sampler.triggerAttackRelease("A1", "1n");
+                      }}
+                    />
+                  </div>
+                  <SC_Button
+                    text="PERC"
+                    handleClick={() => {
+                      sampler.triggerAttackRelease("A2", "1n");
+                    }}
+                  />
+                  <SC_Button
+                    text="GLASS"
+                    handleClick={() => {
+                      sampler.triggerAttackRelease("A3", "1n");
+                    }}
+                  />
+                  <SC_Button
+                    text="RATTLE"
+                    handleClick={() => {
+                      sampler.triggerAttackRelease("A4", "1n");
+                    }}
+                  />
+                  <SC_Button
+                    text="KICK"
+                    handleClick={() => {
+                      sampler.triggerAttackRelease("C1", "1n");
+                    }}
+                  />
+                  <div className="Square">
+                    <SC_Button
+                      text="CHCH"
+                      handleClick={() => {
+                        sampler.triggerAttackRelease("C2", "1n");
+                      }}
+                    />
+                  </div>
+                  <SC_Button
+                    text="LIFE"
+                    handleClick={() => {
+                      sampler.triggerAttackRelease("C3", "1n");
+                    }}
+                  />
+
+                  <div className="Square">
+                    <SC_Button
+                      text="SNARE"
+                      handleClick={() => {
+                        sampler.triggerAttackRelease("C4", "1n");
+                      }}
+                    />
+                  </div>
+                  <SC_Button
+                    text="ECHO"
+                    handleClick={() => {
+                      sampler.triggerAttackRelease("E1", "1n");
+                    }}
+                  />
+                  <div className="Square">
+                    <SC_Button
+                      text="SUSPICIOUS"
+                      handleClick={() => {
+                        sampler.triggerAttackRelease("E3", "1n");
+                      }}
+                    />
+                  </div>
+                  <SC_Button
+                    text="RADIO"
+                    handleClick={() => {
+                      sampler.triggerAttackRelease("E2", "1n");
+                    }}
+                  />
+
+                  <SC_Button
+                    text="QUACK"
+                    handleClick={() => {
+                      sampler.triggerAttackRelease("E4", "1n");
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        
-        <ToneSynth
-          title="Mineral Synth"
-          instrumenttName="bass"
-          settings={bassSettings}
-          handleValueChange={this.handleValueChange}
-        />
-
-        <PingPongDelayEffect
-          title="Ping Pong Delay"
-          instrumentName="bass"
-          settings={bassSettings}
-          handleValueChange={this.handleValueChange}
-        />
-
-        <ChorusEffect
-          title="Chorus"
-          instrumentName="bass"
-          settings={bassSettings}
-          handleValueChange={this.handleValueChange}
-        />
-        </div>
-
-        <Channel
-          settings={drumsSettings}
-          handleValueChange={this.handleDrumsValueChange}
-        />
       </div>
     );
   };

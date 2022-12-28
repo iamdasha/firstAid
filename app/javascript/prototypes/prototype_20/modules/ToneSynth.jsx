@@ -1,26 +1,26 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import SC_ToggleButtonSet from '../components/SC_ToggleButtonSet.jsx'
-import SC_ToggleButton from '../components/SC_ToggleButton.jsx'
-import SC_Slider from '../components/SC_Slider.jsx'
+import SC_ToggleButtonSet from "../components/SC_ToggleButtonSet.jsx";
+import SC_ToggleButton from "../components/SC_ToggleButton.jsx";
+import SC_Slider from "../components/SC_Slider.jsx";
 
 export default class ToneSynth extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   handleValueChange = (property, value) => {
-    const { instrumentName, handleValueChange } = this.props
-    handleValueChange(instrumentName, property, value)
-  }
+    const { instrumentName, handleValueChange } = this.props;
+    handleValueChange(instrumentName, property, value);
+  };
 
   renderEnvelopeControls = () => {
-    const { settings, handleValueChange } = this.props
+    const { settings, handleValueChange } = this.props;
 
     return (
-      <div>
+      <div className="EnvSettings">
         <SC_Slider
-          name="Synth Envelope Attack"
+          name="Attack"
           min={0}
           max={10}
           step={0.01}
@@ -30,7 +30,7 @@ export default class ToneSynth extends Component {
         />
 
         <SC_Slider
-          name="Synth Envelope Decay"
+          name="Decay"
           min={0}
           max={10}
           step={0.01}
@@ -40,7 +40,7 @@ export default class ToneSynth extends Component {
         />
 
         <SC_Slider
-          name="Synth Envelope Sustain"
+          name="Sustain"
           min={0}
           max={1}
           step={0.01}
@@ -50,7 +50,7 @@ export default class ToneSynth extends Component {
         />
 
         <SC_Slider
-          name="Synth Envelope Release"
+          name="Release"
           min={0}
           max={10}
           step={0.01}
@@ -59,40 +59,45 @@ export default class ToneSynth extends Component {
           handleChange={this.handleValueChange}
         />
       </div>
-    )
-  }
+    );
+  };
 
   render() {
-    const { title, settings } = this.props
-    const options = ['sine', 'square', 'sawtooth', 'triangle']
+    const { title, settings } = this.props;
+    const options = ["sine", "square", "sawtooth", "triangle", "pwm", "pulse"];
 
     return (
       <div className="ToneSynth">
-        <h2>{title}</h2>
+        <div className="SynthName">
+          <h1>{title}</h1>
+        </div>
 
-        <SC_ToggleButtonSet
-          name="Synth Type"
-          options={options}
-          value={settings.synth.oscillator.type}
-          property="synthType"
-          handleChange={this.handleValueChange}
-        />
+        <div className="Wave">
+          <SC_ToggleButtonSet
+            name="Wave Type"
+            options={options}
+            value={settings.synth.oscillator.type}
+            property="synthType"
+            handleChange={this.handleValueChange}
+          />
+        </div>
 
-        <br />
+        <div className="OpenChoose">
+        
+          <SC_ToggleButton
+            text="Envelope ↓"
+            isOn={settings.synthUI.envelopeShow}
+            handleClick={() =>
+              this.handleValueChange(
+                "synthShowEnvelope",
+                !settings.synthUI.envelopeShow
+              )
+            }
+          />
+        </div>
 
-        <SC_ToggleButton
-          text="Envelope"
-          isOn={settings.synthUI.envelopeShow}
-          handleClick={() =>
-            this.handleValueChange(
-              'synthShowEnvelope',
-              !settings.synthUI.envelopeShow
-            )
-          }
-        />
-
-        {settings.synthUI.envelopeShow ? this.renderEnvelopeControls() : ''}
+        {settings.synthUI.envelopeShow ? this.renderEnvelopeControls() : ""}
       </div>
-    )
+    );
   }
 }

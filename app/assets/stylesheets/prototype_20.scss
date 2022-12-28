@@ -1,6 +1,9 @@
 .prototype_body_20 {
-  background: var(--medium-grey);
-  font-family: Helvetica, Arial, sans-serif;
+  background: #262b3a;
+  font-family: Inter, sans-serif;
+  font-weight: regular;
+  text-transform: uppercase;
+  padding: 10px;
 }
 
 #prototype_20 {
@@ -8,36 +11,277 @@
   // flex-direction: column;
   // justify-content: center;
   // height: 100%;
-  margin: auto;
+  //margin: auto;
+  width: 100%;
 
   .instrumentUIContainer,
   .instrumentUI {
-    width: 560px;
+    width: 100%;
   }
 
   .Container {
-    & > .SC_Button:first-child {
-      width: 560px;
-      height: 140px;
-      // margin: auto;
-      margin-bottom: 20px;
-      color: var(--black);
-      background: var(--acid-green);
-      font-family: ADC, Helvetica, Arial, sans-serif;
-      font-weight: bold;
-      text-transform: uppercase;
+    h1 {
+      line-height: 83%;
+      font-size: 5vw;
+      font-weight: 200;
+      margin: 0;
+    }
+    h3 {
       text-align: center;
-      font-size: 30px;
+      margin: 0;
+      margin-bottom: 30px;
+      font-size: 3vw;
+      font-weight: 200;
+      line-height: 83%;
+      margin-top: 10px;
+    }
+
+    & > .SC_Button:first-child {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 250px;
+      height: 250px;
+      // margin: auto;
+      //margin-bottom: 20px;
+      border-radius: 50%;
+      color: #6a3d7e;
+      background: #dcbceb;
+      text-align: center;
+      font-size: 5vw;
       line-height: 150px;
     }
 
+    .Header {
+      display: flex;
+      height: 250px;
+      .SC_Button:first-child {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 250px;
+        height: 100%;
+        border-radius: 50%;
+        color: #6a3d7e;
+        background: #dcbceb;
+        text-align: center;
+        font-size: 5vw;
+        line-height: 150px;
+      }
+      .Pic {
+        background-image: url("http://localhost:3000/pill.svg");
+        height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 628px;
+      }
+      .BpmWpapper {
+        height: 100%;
+        .Rect {
+          height: 50%;
+          width: 542px;
+          border-radius: 40px;
+          background-color: var(--yellow);
+        }
+        .BPM {
+          height: 100%;
+          width: 542px;
+          border-radius: 40px;
+          background-color: var(--purple);
+          padding: 20px;
+          h3 {
+            font-size: 5vw;
+            color: var(--dark-purple);
+            margin-bottom: 80px;
+          }
+        }
+      }
+    }
+
+    .All {
+      display: flex;
+    }
+
+    .Synth {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+
+      .SynthName {
+        height: 220px;
+        border-radius: 40px;
+        display: flex;
+        align-items: flex-end;
+        padding: 20px;
+        h1 {
+          width: 200px;
+        }
+      }
+
+      // .SC_ToggleButtonSet {
+      //   .Buttons {
+      //     column-count: 3;
+      //     column-gap: 0;
+      //   }
+      //   border-radius: 40px;
+      //   padding: 20px;
+      // }
+
+      .EnvSettings {
+        border-radius: 40px;
+        background: var(--light-green);
+        padding: 20px;
+        padding-top: 30px;
+      }
+
+      .Left {
+        h1,
+        h2,
+        h3 {
+          color: var(--dark-green);
+        }
+
+        .OpenChoose {
+          .SC_ToggleButton {
+            height: 120px;
+            border-radius: 50px;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 8px 10px;
+            font-size: 3vw;
+            text-align: center;
+            background-color: var(--light-green);
+            color: var(--dark-green);
+            cursor: pointer;
+
+            &:hover:not(.active) {
+              background-color: #ceeade;
+            }
+
+            &.active {
+              color: var(--dark-green);
+              background-color: var(--light-green);
+              cursor: pointer;
+
+              &:hover {
+                background-color: #ceeade;
+              }
+            }
+          }
+
+          .DuoButtons {
+            .SC_ToggleButton {
+              border: none;
+              font-size: 2vw;
+              background-color: var(--light-green);
+              color: var(--dark-green);
+              cursor: pointer;
+
+              &:hover:not(.active) {
+                background-color: #ceeade;
+              }
+
+              &.active {
+                color: var(--dark-green);
+                background-color: var(--light-green);
+                cursor: pointer;
+
+                &:hover {
+                  background-color: #ceeade;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .Left,
+      .Right {
+        width: 50%;
+        .SynthName,
+        .SC_ToggleButtonSet,
+        .Envelope {
+          background: var(--light-green);
+        }
+        .ChorusEffect {
+          .SC_ToggleButtonSet {
+            margin-bottom: 30px;
+            h3 {
+              font-size: 1vw;
+              text-align: left;
+            }
+          }
+          
+        }
+        .Wave {
+          .SC_ToggleButtonSet {
+            .Buttons {
+              column-count: 3;
+              column-gap: 0;
+            }
+            border-radius: 40px;
+            padding: 20px;
+          }
+        }
+      }
+    }
+
+    .SequenceSettings {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      .Sequence,
+      .Sound {
+        width: 50%;
+      }
+    }
+
+    .Sequence,
+    .Sound,
+    .Effect,
+    .Select,
+    .Volume {
+      border-radius: 40px;
+      background: var(--light-green);
+      padding: 20px;
+    }
+
+    .Volume {
+      padding-top: 30px;
+    }
+
+    
+
+    .ChorusEffect {
+      .Buttons {
+        column-count: 2;
+        column-gap: 0;
+      }
+    }
+
+    .DuoEffect {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      .Effect {
+        width: 50%;
+      }
+    }
+
     .SC_ToggleButton {
+      height: 60px;
+      border-radius: 50px;
+      border: 1px solid var(--light-green);
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 8px 10px;
       font-size: 14px;
       text-align: center;
-      text-transform: capitalize;
-      background-color: var(--white);
-      color: var(--black);
+      background-color: #f3f3f3;
+      color: var(--dark-green);
       cursor: pointer;
 
       &:hover:not(.active) {
@@ -45,8 +289,7 @@
       }
 
       &.active {
-        font-weight: 800;
-        color: var(--black);
+        color: var(--light-green);
         background-color: var(--dark-green);
         cursor: default;
       }
@@ -56,41 +299,43 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      align-items: center;
+      align-items: flex-start;
+      margin-bottom: 30px;
 
       h3 {
-        margin-bottom: 14px;
-        font-size: 16px;
+        margin-bottom: 20px;
+        font-size: 1vw;
       }
 
-      input[type='range'] {
+      input[type="range"] {
         -webkit-appearance: none;
         width: 100%;
+      }
 
-        &::-webkit-slider-runnable-track {
-          height: 4px;
-          background: var(--white);
-          border: none;
-        }
+      input[type="range"]::-webkit-slider-runnable-track {
+        height: 6px;
+        background: #f3f3f3;
+        border: none;
+      }
 
-        &::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          border: none;
-          height: 16px;
-          width: 16px;
-          border-radius: 50%;
-          background: var(--dark-green);
-          margin-top: -6px;
-          cursor: pointer;
-        }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: none;
+        height: 30px;
+        width: 92px;
+        border-radius: 10px;
 
-        &:focus {
-          outline: none;
+        background: #27272f;
+        margin-top: -12px;
+        cursor: pointer;
+      }
 
-          &::-webkit-slider-runnable-track {
-            background: var(--white);
-          }
-        }
+      input[type="range"]:focus {
+        outline: none;
+      }
+
+      input[type="range"]:focus::-webkit-slider-runnable-track {
+        background: var(--white);
       }
     }
 
@@ -140,7 +385,7 @@
             top: 0;
             left: 28px;
             display: block;
-            content: '';
+            content: "";
             width: 4px;
             height: 20px;
             background: var(--dark-green);
@@ -305,31 +550,155 @@
 
     .Select {
       position: relative;
-      margin: 30px 0;
-      background: white;
+      //margin: 30px 0;
+      background: var(--light-green);
       cursor: pointer;
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      //height: 120px;
 
       .currentValue {
         padding: 10px 20px;
         line-height: 30px;
+        font-size: 2vw;
+        color: var(--dark-green);
       }
 
       .options {
-        position: absolute;
+        //position: absolute;
         width: 100%;
 
         .SelectItem {
           padding: 10px 20px;
           line-height: 30px;
-          background: var(--white);
+          background: var(--light-green);
+          text-align: center;
+          border-radius: 40px;
+          color: var(--dark-green);
+          font-size: 2vw;
 
           &:hover {
-            background: lightgrey;
+            background: #ceeade;
           }
 
           &.active {
-            background: var(--acid-green);
+            background: var(--dark-green);
+            color: var(--light-green);
           }
+        }
+      }
+    }
+    .DuoButtons {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      .SC_ToggleButton {
+        width: 50%;
+        height: 348px;
+        border-radius: 50%;
+        border: none;
+        font-size: 2vw;
+        background-color: var(--light-green);
+        color: var(--dark-green);
+        cursor: pointer;
+
+        &:hover:not(.active) {
+          background-color: #ceeade;
+        }
+
+        &.active {
+          color: var(--light-green);
+          background-color: var(--dark-green);
+          cursor: pointer;
+
+          &:hover {
+            color: var(--dark-green);
+            background-color: #ceeade;
+          }
+        }
+      }
+    }
+
+    .Synth {
+      .Right {
+        .Effect,
+        .SynthName,
+        .SC_ToggleButtonSet {
+          background: var(--blue);
+        }
+        .Wave {
+          .SC_ToggleButtonSet {
+            background: var(--blue);
+          }
+        }
+        .SC_ToggleButton {
+          border: 1px solid var(--blue);
+          &.active {
+            color: var(--blue);
+            background-color: var(--dark-blue);
+            cursor: default;
+          }
+        }
+        h1,
+        h2,
+        h3 {
+          color: var(--dark-blue);
+        }
+
+        .EnvSettings {
+          background: var(--blue);
+        }
+        .OpenChoose {
+          .SC_ToggleButton {
+            height: 120px;
+            border-radius: 50px;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 8px 10px;
+            font-size: 3vw;
+            text-align: center;
+            background-color: var(--blue);
+            color: var(--dark-blue);
+            cursor: pointer;
+
+            &:hover:not(.active) {
+              background-color: #b8ccff;
+            }
+
+            &.active {
+              color: var(--dark-blue);
+              background-color: var(--blue);
+              cursor: pointer;
+
+              &:hover {
+                background-color: #b8ccff;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .Boom {
+      width: 100%;
+      .Beat {
+        border-radius: 40px;
+        background: var(--red);
+        padding: 20px;
+        width: 100%;
+        color: var(--dark-red);
+        h1 {
+          margin-bottom: 40px;
+        }
+        .Volume {
+          border-radius: none;
+          background: none;
+          padding: 0;
         }
       }
     }
@@ -350,18 +719,33 @@
     }
 
     .sampleButtonWrapper {
+      column-count: 4;
+      column-gap: 0;
       .SC_Button {
         padding: 8px 10px;
-        font-size: 14px;
+        border-radius: 50%;
+        border: 1px solid #262b3a;
+        font-size: 1vw;
         text-align: center;
-        text-transform: capitalize;
-        background-color: var(--white);
-        color: var(--black);
+        //text-transform: capitalize;
+        background-color: var(--yellow);
+        color: #C88829;
         cursor: pointer;
+        width: 100%;
+        height: 175px;
         user-select: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &:hover {
-          background-color: var(--light-grey);
+          background-color: var(--dark-yellow);
+          color: var(--light-yellow);
+        }
+      }
+      .Square {
+        .SC_Button {
+          border-radius: 40px;
         }
       }
     }

@@ -1,20 +1,20 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from "react";
 
-import SC_ToggleButton from './SC_ToggleButton'
+import SC_ToggleButton from "./SC_ToggleButton";
 
 export default class SC_ToggleButtonSet extends PureComponent {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   handleChange = (value) => {
-    const { property, handleChange } = this.props
-    handleChange(property, value)
-  }
+    const { property, handleChange } = this.props;
+    handleChange(property, value);
+  };
 
   render() {
-    const { name, options, value } = this.props
-    const buttonElements = []
+    const { name, options, value } = this.props;
+    const buttonElements = [];
 
     options.forEach((option, i) => {
       buttonElements.push(
@@ -24,14 +24,15 @@ export default class SC_ToggleButtonSet extends PureComponent {
           handleClick={() => this.handleChange(option)}
           key={i}
         />
-      )
-    })
+      );
+    });
 
     return (
       <div className="SC_ToggleButtonSet">
         <h3>{name}</h3>
-        <div>{buttonElements}</div>
+
+        <div className="Buttons">{buttonElements}</div>
       </div>
-    )
+    );
   }
 }

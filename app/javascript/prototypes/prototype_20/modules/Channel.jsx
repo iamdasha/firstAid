@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import SC_ToggleButton from '../components/SC_ToggleButton.jsx'
-import SC_Slider from '../components/SC_Slider.jsx'
-import SC_Knob from '../components/SC_Knob.jsx'
+import SC_ToggleButton from "../components/SC_ToggleButton.jsx";
+import SC_Slider from "../components/SC_Slider.jsx";
+import SC_Knob from "../components/SC_Knob.jsx";
 
 export default class ToneSynth extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
-    const { settings, handleValueChange } = this.props
+    const { settings, handleValueChange } = this.props;
 
     return (
       <div className="ToneSynth">
@@ -23,24 +23,26 @@ export default class ToneSynth extends Component {
           handleChange={handleValueChange}
         /> */}
 
-        <SC_Slider
-          name="Channel Volume"
-          min={-60}
-          max={10}
-          step={1}
-          value={settings.channel.volume}
-          property="channelVolume"
-          handleChange={handleValueChange}
-        />
-
+        <div className="Volume">
+          <SC_Slider
+            name="Volume"
+            min={-1000}
+            max={10}
+            step={1}
+            value={settings.channel.volume}
+            property="channelVolume"
+            handleChange={handleValueChange}
+          />
+        </div>
+        {/* 
         <SC_ToggleButton
           text="Mute"
           isOn={settings.channel.mute}
           handleClick={() =>
             handleValueChange('channelMute', !settings.channel.mute)
           }
-        />
+        /> */}
       </div>
-    )
+    );
   }
 }
