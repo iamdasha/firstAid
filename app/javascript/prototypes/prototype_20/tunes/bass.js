@@ -1,7 +1,7 @@
 const synth = {
   volume: -10,
   detune: 0,
-  portamento: 0.05,
+  portamento: 0.25,
   envelope: {
     attack: 0.05,
     attackCurve: "exponential",
@@ -12,7 +12,7 @@ const synth = {
     releaseCurve: "exponential",
   },
   oscillator: {
-    type: "sawtooth",
+    type: "sine",
     modulationType: "sine",
     // partialCount: 0,
     // partials: [],

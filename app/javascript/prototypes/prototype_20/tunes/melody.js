@@ -5,8 +5,8 @@ const channel = {
 
 const synth = {
   volume: -15,
-  detune: 0,
-  portamento: 0.05,
+  detune: 1,
+  portamento: 0.2,
   envelope: {
     attack: 0.05,
     attackCurve: 'exponential',
@@ -18,11 +18,11 @@ const synth = {
   },
   oscillator: {
     type: 'triangle',
-    modulationType: 'sine',
+    modulationType: 'triangle',
     // partialCount: 0,
     // partials: [],
     phase: 0,
-    harmonicity: 0.5
+    harmonicity: 3
   }
 }
 
@@ -92,18 +92,18 @@ const presets = {
     synth: {
       volume: -15,
       detune: 0,
-      portamento: 0.05,
+      portamento: 0.6,
       envelope: {
-        attack: 0.05,
+        attack: 0.2,
         attackCurve: 'exponential',
-        decay: 0.2,
+        decay: 0.1,
         decayCurve: 'exponential',
-        sustain: 0.2,
-        release: 1.5,
+        sustain: 0.4,
+        release: 0.3,
         releaseCurve: 'exponential'
       },
       oscillator: {
-        type: 'sawtooth',
+        type: 'triangle',
         modulationType: 'sine',
         // partialCount: 0,
         // partials: [],
@@ -112,14 +112,14 @@ const presets = {
       }
     },
     chorus: {
-      wet: 0.8,
-      type: 'square',
+      wet: 1,
+      type: 'sawtooth',
       frequency: 20,
-      delayTime: 3.5,
-      depth: 0.7,
-      spread: 180
+      delayTime: 7,
+      depth: 0,
+      spread: 190
     },
-    distortion: { wet: 0.4, distortion: 0, oversample: '4x' },
+    distortion: { wet: 0, distortion: 0, oversample: 'none' },
     bitCrusher: { wet: 0, bits: 4 },
     pingPongDelay: { wet: 0.2, delayTime: 0.6, maxDelayTime: 1 }
   },
@@ -219,6 +219,12 @@ const sequence = {
     },
     {
       time: '3:0:1',
+      noteName: 'D4',
+      duration: '4n',
+      velocity: 1
+    },
+    {
+      time: '3:3:1',
       noteName: 'D4',
       duration: '4n',
       velocity: 1

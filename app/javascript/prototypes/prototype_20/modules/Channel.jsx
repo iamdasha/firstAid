@@ -26,7 +26,7 @@ export default class ToneSynth extends Component {
         <div className="Volume">
           <SC_Slider
             name="Volume"
-            min={-1000}
+            min={-20}
             max={10}
             step={1}
             value={settings.channel.volume}
