@@ -57,7 +57,7 @@
     name: 'Synth 2.0'
   },
   {
-    name: 'Final'
+    name: 'FIRST AID KIT SYNTH 2.0'
   }
 ]
 
